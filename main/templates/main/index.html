@@ -1,0 +1,93 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Welcome to Evently{% endblock %}
+
+{% block body %}
+<section class="hero-section p-4 row align-items-center" style="overflow: hidden;">
+    <div class="col-lg-6 col-md-12 text-center text-lg-start p-3">
+        <h1 class="fw-bold mb-4">Host, Connect, Celebrate</h1>
+        <p class="fs-5 mb-4">Your events, our platform! From intimate gatherings to grand celebrations, Evently helps you create unforgettable experiences.</p>
+        <a href="{% url 'explore' %}" class="btn btn-primary btn-lg">Explore Events</a>
+        <a href="{% url 'create_event' %}" class="btn btn-outline-secondary btn-lg mt-2 mt-md-0 ms-0 ms-md-2">Host an Event</a>
+    </div>
+    <div class="col-lg-6 col-md-12 text-center">
+        <img src="{% static 'assets/hero.png' %}" class="img-fluid rounded" style="max-height: 450px; object-fit: cover;" alt="Hero Image">
+    </div>
+</section>
+
+<section class="p-4 my-5 text-bg-primary">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">What Evently Offers</h2>
+        <p class="text-light fs-5">Discover how Evently transforms your event experiences.</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card border-0 h-100 shadow-lg">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-check fs-1 text-primary mb-3"></i>
+                    <h5 class="card-title fw-bold">Seamless Event Creation</h5>
+                    <p class="card-text text-muted">Effortlessly create, manage, and promote your events with ease.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-0 h-100 shadow-lg">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fs-1 text-primary mb-3"></i>
+                    <h5 class="card-title fw-bold">Vibrant Community</h5>
+                    <p class="card-text text-muted">Connect with event enthusiasts and expand your network.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-0 h-100 shadow-lg">
+                <div class="card-body text-center">
+                    <i class="fas fa-search fs-1 text-primary mb-3"></i>
+                    <h5 class="card-title fw-bold">Discover New Adventures</h5>
+                    <p class="card-text text-muted">Explore events tailored to your interests and passions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-4 my-5 bg-light">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">What Our Users Say</h2>
+        <p class="text-muted fs-5">Hear from those who’ve hosted and joined events with Evently.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body">
+                    <p class="card-text text-muted">"Evently made planning my wedding a breeze. Highly recommend!"</p>
+                    <h6 class="fw-bold text-primary">- Sarah T.</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body">
+                    <p class="card-text text-muted">"I found an amazing coding bootcamp through Evently. Life-changing!"</p>
+                    <h6 class="fw-bold text-primary">- John D.</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body">
+                    <p class="card-text text-muted">"As an event host, I love how easy it is to connect with attendees."</p>
+                    <h6 class="fw-bold text-primary">- Emma R.</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="text-center p-5 bg-primary text-white">
+    <h2 class="fw-bold mb-3">Ready to Get Started?</h2>
+    <p class="fs-5 mb-4">Join Evently today and transform your event experience!</p>
+    <a href="{% url 'signup' %}" class="btn btn-light btn-lg">Get Started</a>
+</section>
+{% endblock %}

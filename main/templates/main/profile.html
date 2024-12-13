@@ -1,0 +1,107 @@
+{% extends "main/layout.html" %}
+
+{% block title %}{{ profile.full_name }}{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <!-- Profile Header -->
+    <div class="card border-0 shadow-sm mb-5">
+        <div class="card-body p-4 bg-primary text-white rounded">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <!-- Profile Image and Details -->
+                <div class="d-flex align-items-center">
+                    <div class="position-relative">
+                        <img src="{{ profile.image.url|default:'https://via.placeholder.com/120' }}" 
+                             alt="{{ profile.full_name }}'s Profile Picture" 
+                             class="rounded-circle border border-white border-4 shadow" 
+                             style="width: 120px; height: 120px; object-fit: cover;">
+                    </div>
+                    <div class="ms-4">
+                        <h2 class="card-title mb-1 fw-bold">{{ profile.full_name }}</h2>
+                        <p class="mb-1">
+                            <i class="fas fa-user me-2"></i>@{{ profile.username }}
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope me-2"></i>{{ profile.email }}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Update Profile Button -->
+                {% if user.is_authenticated and user == profile %}
+                <div class="mt-4 mt-md-0">
+                    <a class="btn btn-sm btn-light text-primary fw-bold" href="{% url 'update_profile' %}">
+                        <i class="fas fa-edit me-2"></i> Update Profile
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Stats Section -->
+            <div class="mt-4">
+                <div class="row text-center g-3">
+                    <!-- Events Organized -->
+                    <div class="col-12 col-md-4">
+                        <div class="bg-white text-dark rounded p-3 shadow-sm">
+                            <h4 class="fw-bold text-primary mb-1">{{ profile.organized_events.count }}</h4>
+                            <small class="text-muted d-block">
+                                <i class="fas fa-calendar-alt me-2"></i>Events Organized
+                            </small>
+                        </div>
+                    </div>
+                    <!-- Events Attended -->
+                    <div class="col-12 col-md-4">
+                        <div class="bg-white text-dark rounded p-3 shadow-sm">
+                            <h4 class="fw-bold text-success mb-1">{{ profile.events_registered|length }}</h4>
+                            <small class="text-muted d-block">
+                                <i class="fas fa-check-circle me-2"></i>Events Attended
+                            </small>
+                        </div>
+                    </div>
+                    <!-- Attendance Percentage -->
+                    <div class="col-12 col-md-4">
+                        <div class="bg-white text-dark rounded p-3 shadow-sm">
+                            <h4 class="fw-bold text-info mb-1">{{ profile.attendance_rate }}%</h4>
+                            <small class="text-muted d-block">
+                                <i class="fas fa-chart-line me-2"></i>Attendance Percentage
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events Organized Section -->
+    <div class="mb-5">
+        <h3 class="mb-3">Events Organized</h3>
+        {% if profile.organized_events.count > 0 %}
+        <div class="row">
+            {% for event in profile.organized_events.all %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                {% include "main/partials/_eventcard.html" %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted">No events organized by this user.</p>
+        {% endif %}
+    </div>
+
+    <!-- Events Attended Section -->
+    <div>
+        <h3 class="mb-3">Events Attended</h3>
+        {% if profile.events_registered %}
+        <div class="row">
+            {% for event in profile.events_registered %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                {% include "main/partials/_eventcard.html" %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted">No events attended by this user.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% load static %}
+{% load humanize %}
+
+<div class="card m-2 border-0 shadow-sm">
+    <img src="{{ event.thumbnail.url|default:'https://via.placeholder.com/600x400' }}" class="card-img-top rounded-top" alt="{{ event.name }} thumbnail">
+
+    <div class="card-body border-top">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+                {% if event.isfree %}
+                <span class="badge rounded-pill text-bg-success">FREE</span>
+                {% else %}
+                <span class="badge rounded-pill text-bg-info">${{ event.price | intcomma }}</span>
+                {% endif %}
+
+                {% if event.eventtype == 'Public' %}
+                <span class="badge rounded-pill text-bg-secondary">{{ event.eventtype }}</span>
+                {% else %}
+                <span class="badge rounded-pill text-bg-warning">{{ event.eventtype }}</span>
+                {% endif %}
+            </div>
+            {% if event in user.events_registered %}
+            <span class="badge rounded-pill text-bg-light">Registered</span>
+            {% endif %}
+        </div>
+        
+        <h5 class="card-title">
+            <a href="{% url 'event_details' event.id %}" class="text-decoration-none text-dark">{{ event.name }}</a>
+        </h5>
+        
+        <div class="d-flex flex-column mt-2">
+            
+            <small class="text-muted">
+                <i class="fas fa-map-marker-alt me-1 text-secondary"></i>
+                {{ event.location }}
+            </small>
+            
+            <small class="text-muted">
+                <i class="fas fa-calendar-day me-1 text-secondary"></i>
+                {{ event.starttime|date:"g:i A, M d, Y" }}
+            </small>
+            
+            <small>
+                <a href="{% url 'profile' event.organizer %}" class="text-muted text-decoration-none">
+                    <i class="fas fa-user me-1 text-secondary"></i>
+                    {{ event.organizer.full_name }}
+                </a>
+            </small>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                {% if event.rating > 0 %}
+                <span class="text-warning">
+                    <i class="fas fa-star"></i> {{ event.rating }}/5
+                </span>
+                {% else %}
+                <span class="text-muted">No Ratings</span>
+                {% endif %}
+            </div>
+            <div>
+                <small class="text-muted">{{ event.attendees.all|length }} attendees</small>
+            </div>
+        </div>
+    </div>
+</div>

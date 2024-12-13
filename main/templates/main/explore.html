@@ -1,0 +1,94 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Explore Events{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    <h1 class="mb-4">Explore Events</h1>
+
+    <!-- Search and Filters Section -->
+    <form method="get" class="mb-4">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <input type="text" name="q" class="form-control" placeholder="Search by name or location" value="{{ query }}">
+            </div>
+            <div class="col-md-2 mb-3">
+                <select name="event_type" class="form-select">
+                    <option value="">All Types</option>
+                    <option value="Public" {% if event_type == 'Public' %}selected{% endif %}>Public</option>
+                    <option value="Private" {% if event_type == 'Private' %}selected{% endif %}>Private</option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-3">
+                <select name="price" class="form-select">
+                    <option value="">All</option>
+                    <option value="free" {% if price_filter == 'free' %}selected{% endif %}>Free</option>
+                    <option value="paid" {% if price_filter == 'paid' %}selected{% endif %}>Paid</option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-3">
+                <select name="status" class="form-select">
+                    <option value="">All Statuses</option>
+                    <option value="upcoming" {% if status_filter == 'upcoming' %}selected{% endif %}>Upcoming</option>
+                    <option value="live" {% if status_filter == 'live' %}selected{% endif %}>Live Now</option>
+                    <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Completed</option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-3">
+                <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Events Section -->
+    <section class="p-2 border-top">
+        <div class="row">
+            {% for event in page_obj %}
+            <div class="col-lg-3 col-md-4 col-12 p-0">
+                {% include "main/partials/_eventcard.html" %}
+            </div>
+            {% empty %}
+            <p class="text-center">No events found.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Pagination Controls -->
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}{% if event_type %}event_type={{ event_type }}&{% endif %}{% if price_filter %}price={{ price_filter }}&{% endif %}{% if status_filter %}status={{ status_filter }}&{% endif %}page=1" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}{% if event_type %}event_type={{ event_type }}&{% endif %}{% if price_filter %}price={{ price_filter }}&{% endif %}{% if status_filter %}status={{ status_filter }}&{% endif %}page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}{% if event_type %}event_type={{ event_type }}&{% endif %}{% if price_filter %}price={{ price_filter }}&{% endif %}{% if status_filter %}status={{ status_filter }}&{% endif %}page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}{% if event_type %}event_type={{ event_type }}&{% endif %}{% if price_filter %}price={{ price_filter }}&{% endif %}{% if status_filter %}status={{ status_filter }}&{% endif %}page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}{% if event_type %}event_type={{ event_type }}&{% endif %}{% if price_filter %}price={{ price_filter }}&{% endif %}{% if status_filter %}status={{ status_filter }}&{% endif %}page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

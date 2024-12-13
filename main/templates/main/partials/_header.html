@@ -1,0 +1,65 @@
+{% load static %}
+
+<header class="sticky-top bg-light shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-2">
+        <div class="container-fluid px-4">
+            <a href="{% url 'index' %}" class="navbar-brand me-4">
+                <img src="{% static 'assets/logo.svg' %}" alt="Evently Logo" class="img-fluid" style="max-height: 35px;">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-3">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'explore' %}fw-bold text-dark{% else %}text-muted{% endif %}" 
+                           href="{% url 'explore' %}" style="transition: color 0.3s;">
+                            Explore
+                        </a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'settings' %}fw-bold text-dark{% else %}text-muted{% endif %}" 
+                           href="{% url 'settings' %}" style="transition: color 0.3s;">
+                            Settings
+                        </a>
+                    </li>
+                    {% if user.is_staff %}
+                    <li class="nav-item me-3">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'admin:index' %}fw-bold text-dark{% else %}text-muted{% endif %}" 
+                           href="{% url 'admin:index' %}" style="transition: color 0.3s;">
+                            Admin
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item me-3">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'create_event' %}fw-bold text-dark{% else %}text-muted{% endif %}" 
+                           href="{% url 'create_event' %}" style="transition: color 0.3s;">
+                            New Event
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ user.image.url|default:'https://via.placeholder.com/35' }}" 
+                                 alt="{{ user.username }}" 
+                                 class="rounded-circle me-2" 
+                                 style="width: 35px; height: 35px; object-fit: cover;">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="{% url 'profile' user %}">My Profile</a></li>
+                            <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary px-3 py-1" href="{% url 'login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

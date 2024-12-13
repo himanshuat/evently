@@ -1,0 +1,35 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Payment{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h2 class="mb-4">Payment for "{{ event.name }}"</h2>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <p><strong>Event Name:</strong> {{ event.name }}</p>
+            <p><strong>Date & Time:</strong> {{ event.starttime|date:"D, M d Y H:i" }}</p>
+            <p><strong>Location:</strong> {{ event.location }}</p>
+            <p><strong>Price:</strong> ${{ event.price }}</p>
+        </div>
+    </div>
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="card-details" class="form-label">Card Details</label>
+            <input
+                type="text"
+                id="card-details"
+                name="card-details"
+                class="form-control"
+                placeholder="Enter 16-digit mock card number"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3 w-100">Pay ${{ event.price }}</button>
+    </form>
+</div>
+{% endblock %}

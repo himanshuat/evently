@@ -1,0 +1,51 @@
+{% extends "main/layout.html" %}
+{% block title %}Settings{% endblock %}
+
+{% block body %}
+<section class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="text-primary">Settings</h1>
+        <p class="text-muted">Manage your account and preferences</p>
+    </div>
+    <div class="row justify-content-center g-4 mt-5">
+        <!-- Change Username -->
+        <div class="col-md-4 col-sm-6">
+            <a href="{% url 'change_username' %}" class="text-decoration-none">
+                <div class="p-4 bg-light border rounded shadow-sm text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-user-edit fs-2 text-primary"></i>
+                    </div>
+                    <h5 class="text-dark fw-bold">Change Username</h5>
+                    <p class="text-muted small">Update your display username securely</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Change Password -->
+        <div class="col-md-4 col-sm-6">
+            <a href="{% url 'change_password' %}" class="text-decoration-none">
+                <div class="p-4 bg-light border rounded shadow-sm text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-key fs-2 text-info"></i>
+                    </div>
+                    <h5 class="text-dark fw-bold">Change Password</h5>
+                    <p class="text-muted small">Ensure your account remains secure</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Delete Account -->
+        <div class="col-md-4 col-sm-6">
+            <a href="{% url 'delete_account' %}" class="text-decoration-none">
+                <div class="p-4 bg-light border rounded shadow-sm text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-trash-alt fs-2 text-danger"></i>
+                    </div>
+                    <h5 class="text-dark fw-bold">Delete Account</h5>
+                    <p class="text-muted small">Permanently remove your account</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% load static %}
+
+<footer class="bg-dark text-white text-center py-4 mt-3">
+    <div class="container">
+        <div class="mb-3">
+            <a href="{% url 'index' %}" class="text-decoration-none text-white">
+                <img src="{% static 'assets/favicon.ico' %}" alt="Evently Logo" height="32" class="mb-2">
+            </a>
+            <p class="mb-0">Host, Connect, Celebrate</p>
+        </div>
+        <p class="small">&copy; 2024 Evently. All rights reserved.</p>
+        <div class="social-links mt-3">
+            <a href="https://www.facebook.com/cs50" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="https://twitter.com/cs50" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="https://www.instagram.com/cs50" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="https://www.linkedin.com/school/cs50" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+        </div>
+    </div>
+</footer>

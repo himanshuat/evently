@@ -1,0 +1,18 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Error{% endblock %}
+
+{% block body %}
+<section class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <img src="{% static 'assets/error.svg' %}" alt="Error" class="img-fluid mb-4" style="max-width: 400px;">
+        <p class="fs-1 text-muted">
+            {{ message|default:"Oops! Something went wrong." }}
+        </p>
+        <a href="{% url 'index' %}" class="btn btn-primary mt-3">
+            <i class="fas fa-arrow-left me-2"></i>Back to Home
+        </a>
+    </div>
+</section>
+{% endblock %}

@@ -4,8 +4,6 @@
 
 Evently is a robust event management platform designed to simplify the process of organizing, discovering, and attending events. With its advanced features, intuitive interface, and dynamic workflows, Evently ensures a seamless experience for organizers and attendees alike.
 
----
-
 ## **Table of Contents**
 1. [Features](#features)
 2. [Tech Stack](#tech-stack)
@@ -13,8 +11,6 @@ Evently is a robust event management platform designed to simplify the process o
 4. [Installation](#installation)
 5. [What I Learned](#what-i-learned)
 6. [Additional Information](#additional-information)
-
----
 
 ## **Features**
 
@@ -68,15 +64,11 @@ Evently is a feature-rich platform built to handle event management efficiently.
 
    This page effectively attracts, engages, and retains users by providing an immediate overview of the platform's strengths.
 
----
-
 ## **Tech Stack**
 
 - **Backend**: Django (Models, Views, Authentication, Admin)
 - **Frontend**: HTML, CSS, JavaScript, Bootstrap, Font Awesome
 - **Database**: SQLite
-
----
 
 ## **Project Structure**
 
@@ -129,8 +121,6 @@ Evently is a feature-rich platform built to handle event management efficiently.
 📄 README.md                   # Documentation
 ```
 
----
-
 ## **Installation**
 
 Follow these steps to set up the project locally:
@@ -167,8 +157,6 @@ Follow these steps to set up the project locally:
 6. **Access the Application**:
    Open a browser and visit `http://127.0.0.1:8000`.
 
----
-
 ## **What I Learned**
 
 - Django Humanize  
@@ -181,8 +169,6 @@ Follow these steps to set up the project locally:
 - Unique Together Constraint  
 - Paginated Event Listings  
 
----
-
 ## **Additional Information**
 
 ### **Credentials**
@@ -193,6 +179,4 @@ Follow these steps to set up the project locally:
 **Other Users**:  
 - **Username**: tonystark | **Password**: tony  
 - **Username**: harrypotter | **Password**: harry  
-- **Username**: johndoe | **Password**: john  
-
---- 
+- **Username**: johndoe | **Password**: john
